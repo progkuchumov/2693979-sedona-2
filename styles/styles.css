@@ -29,6 +29,7 @@ body {
 }
 
 img {
+  display: block;
   max-width: 100%;
   height: auto;
   object-fit: contain;
@@ -92,6 +93,7 @@ img {
 }
 
 .button {
+  display: inline-block;
   padding: 8px 34px;
   background-color: #756157;
   border-radius: 4px;
@@ -125,6 +127,18 @@ img {
 
 .align-center {
   text-align: center;
+}
+
+.hero {
+  width: 1200px;
+  height: 485px;
+  background: url("../images/welcome-sedona.png") no-repeat;
+  background-size: 100% auto;
+}
+
+.hero-img {
+  margin: 0 auto;
+  padding-top: 51px;
 }
 
 .advantages-item {
@@ -230,7 +244,7 @@ img {
 
 .footer-phone {
   font-size: 40px;
-  line-height: 40px;;
+  line-height: 40px;
   color: #000000;
   text-decoration: none;
 }
