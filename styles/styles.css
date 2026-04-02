@@ -80,7 +80,7 @@ a {
 }
 
 .button {
-  display: inline-block;
+  display: block;
   padding: 8px 34px;
   font-family: inherit;
   font-weight: 700;
@@ -130,20 +130,26 @@ a {
 .footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-left: 70px;
   padding-right: 70px;
 }
 
-.header {
-  align-items: flex-start;
+.navigation-container {
+  display: flex;
+  position: relative;
 }
 
 .logo {
-  margin-right: 28px;
+  position:absolute;
+  display: block;
+  width: 140px;
+  height: 70px;
+  z-index: 5;
 }
 
 .navigation {
-  flex-grow: 1;
+  margin-left: 168px;
 }
 
 .navigation-list {
@@ -203,11 +209,22 @@ a {
 }
 
 .hero {
+  position: relative;
   margin-bottom: 69px;
   width: 1200px;
-  height: 485px;
-  background: url("../images/welcome-sedona.png") no-repeat;
-  background-size: 100% auto;
+  min-height: 485px;
+  background: #3F78A3 url("../images/welcome-sedona.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 1200px;
+  height: 57px;
+  background: url("../images/hero-divider.svg") no-repeat center center;
+  background-size: cover;
 }
 
 .hero-img {
@@ -215,8 +232,8 @@ a {
   padding-top: 51px;
 }
 
-.advantages, .services, .hotel-search,
-.subscription {
+.advantages, .services,
+.hotel-search, .subscription {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -311,6 +328,7 @@ a {
 
 .services-item .item-title {
   margin-bottom: 30px;
+  max-width: 230px;
 }
 
 .services-item .item-text {
@@ -447,7 +465,7 @@ a {
   width: 13px;
   height: 13px;
   background: url("../images/home.svg") no-repeat;
-  background-size: 100% auto;
+  background-size: cover;
 }
 
 .display-button {
@@ -577,13 +595,18 @@ a {
   padding-top: 96px;
   padding-bottom: 104px;
   background: #756157 url("../images/subscribe-bg.jpg") no-repeat;
-  background-size: 100% auto;
+  background-size: cover;
   color: #ffffff;
   text-align: center;
 }
 
 .subscription .section-title {
+  max-width: 475px;
   color: #ffffff;
+}
+
+.subscription .section-big-text {
+  max-width: 475px;
 }
 
 .subscription-inner {
@@ -593,6 +616,10 @@ a {
 
 .subscription-inner .section-title {
   color: #000000;
+}
+
+.subscription-form {
+  display: flex;
 }
 
 .subscription-input-email {
@@ -616,7 +643,6 @@ a {
 }
 
 .footer {
-  align-items: center;
   padding-top: 45px;
   padding-bottom: 35px;
 }
