@@ -510,6 +510,7 @@ img {
 
 .display {
   display: flex;
+  gap: 8px;
 }
 
 .display-button {
@@ -517,10 +518,6 @@ img {
   width: 48px;
   height: 48px;
   border: 2px solid #e5e5e5;
-}
-
-.display-button:not(:last-child) {
-  margin-right: 8px;
 }
 
 .display-button-tiles {
