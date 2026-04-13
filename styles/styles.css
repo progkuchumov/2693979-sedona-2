@@ -43,17 +43,11 @@ img {
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
   margin: 0 auto;
   width: 1200px;
   min-height: 100%;
   background-color: #ffffff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-
-.main-container {
-  flex-grow: 1;
 }
 
 .visually-hidden {
@@ -92,6 +86,23 @@ img {
   cursor: pointer;
 }
 
+.button:hover {
+  background-color: #615048;
+}
+
+.button:focus-visible {
+  outline: none;
+  background-color: #615048;
+}
+
+.button:active {
+  color: rgba(255, 255, 255, .3);
+}
+
+.button:disabled {
+  background-color: #e5e5e5;
+}
+
 .button-submit,
 .button-reset {
   padding: 8px 50px;
@@ -105,6 +116,24 @@ img {
   background: none;
 }
 
+.button-reset:hover {
+  background: none;
+  opacity: .6;
+}
+
+.button-reset:focus-visible {
+  background: none;
+  outline: 3px solid #83b3d3;
+}
+
+.button-reset:active {
+  color: rgba(255, 255, 255, .3);
+}
+
+.button-reset:disabled {
+  color: rgba(255, 255, 255, .1);
+}
+
 .button-more {
   padding: 8px;
 }
@@ -114,9 +143,31 @@ img {
   background-color: #82B3D3;
 }
 
+.button-submit:hover,
+.button-add:hover,
+.subscription-button:hover {
+  background-color: #68a2ca;
+}
+
+.button-submit:focus-visible,
+.button-add:focus-visible,
+.subscription-button:focus-visible {
+  outline: none;
+  background-color: #68a2ca;
+}
+
 .button-favorites {
   padding: 8px;
   background-color: #7DB54F;
+}
+
+.button-favorites:hover {
+  background-color: #6c9e42;
+}
+
+.button-favorites:focus-visible {
+  outline: none;
+  background-color: #6c9e42;
 }
 
 .section-title {
@@ -159,13 +210,13 @@ img {
   padding-right: 70px;
 }
 
-.navigation-container {
-  display: flex;
+.header {
   position: relative;
 }
 
 .logo {
   position:absolute;
+  top: 0;
   display: block;
   width: 140px;
   height: 70px;
@@ -181,19 +232,38 @@ img {
   flex-wrap: wrap;
 }
 
-.navigation-link {
-  display: block;
-  padding: 20px 16px;
+.navigation-item {
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+}
+
+.navigation-link {
+  position: relative;
+  display: block;
+  padding: 20px 16px;
   text-decoration: none;
   color: #000000;
+}
+
+.navigation-link:hover:after,
+.navigation-link-active:after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: -1px;
+  z-index: 1;
+  display: block;
+  width: auto;
+  height: 2px;
+  background-color: #756257;
 }
 
 .user-bar {
   display: flex;
   flex-wrap: wrap;
+  align-self: flex-start;
   align-items: center;
   flex-shrink: 0;
 }
@@ -204,6 +274,11 @@ img {
   min-width: 44px;
   min-height: 65px;
   background: url("../images/search.svg") no-repeat center center;
+}
+
+.search-link:hover,
+.favourites:hover {
+  opacity: .6;
 }
 
 .favourites {
@@ -436,6 +511,18 @@ img {
   background-size: cover;
 }
 
+.breadcrumbs-link[href]:hover {
+  opacity: .6;
+}
+
+.breadcrumbs-link[href]:focus {
+  outline: none;
+}
+
+.breadcrumbs-link[href]:active {
+  opacity: .3;
+}
+
 .filter {
   padding: 35px 70px 70px;
   background: #6B8EB4 url(../images/filter-bg.jpg) no-repeat;
@@ -508,28 +595,42 @@ img {
   color: #333333;
 }
 
-.display {
+.card-grid {
   display: flex;
   gap: 8px;
 }
 
-.display-button {
+.card-grid-toggle {
   display: block;
   width: 48px;
   height: 48px;
   border: 2px solid #e5e5e5;
+  border-radius: 4px;
 }
 
-.display-button-tiles {
+.card-grid-toggle-tiles {
   background: url("../images/tiles.svg") 50% 50% no-repeat;
 }
 
-.display-button-cards {
+.card-grid-toggle-cards {
   background: url("../images/cards.svg") 50% 50% no-repeat;
 }
 
-.display-button-lists {
+.card-grid-toggle-lists {
   background: url("../images/lists.svg") 50% 50% no-repeat;
+}
+
+.card-grid-toggle:hover {
+  border-color: #000000;
+}
+
+.card-grid-toggle:focus-visible {
+  border-color: #68a2ca;
+  outline: none;
+}
+
+.card-grid-toggle:active {
+  border-color: #000000;
 }
 
 .catalog {
@@ -637,6 +738,19 @@ img {
   border-radius: 4px;
 }
 
+.pagination-link[href]:hover {
+  background-color: #68a2ca;
+}
+
+.pagination-link[href]:focus-visible {
+  outline: none;
+  background-color: #68a2ca;
+}
+
+.pagination-link[href]:active {
+  color: rgba(255, 255, 255, .3);
+}
+
 .pagination-current {
   color: #000000;
   background-color: #F2F2F2;
@@ -675,12 +789,21 @@ img {
 }
 
 .subscription-form {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  width: 684px;
 }
 
 .subscription-input-email {
   font-family: inherit;
   padding: 14px 20px;
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.subscription-inner .subscription-input-email {
+  background-color: #f2f2f2;
 }
 
 .subscription-input-email::placeholder {
@@ -696,6 +819,8 @@ img {
   font-size:20px;
   line-height: 36px;
   background-color: #82B3D3;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .footer {
@@ -708,22 +833,35 @@ img {
   flex-wrap: wrap;
 }
 
-.social-link {
-  display: block;
+.social-item {
   min-width: 47px;
   min-height: 40px;
 }
 
-.social-link-vk {
-  background: url("../images/vk.svg") no-repeat center center;
+.social-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
-.social-link-telegram {
-  background: url("../images/telegram.svg") no-repeat center center;
+.social-link:hover path,
+.social-link:focus-visible path,
+.social-link:active path {
+  fill: #68a2ca;
 }
 
-.social-link-youtube {
-  background: url("../images/youtube.svg") no-repeat center center;
+.social-link:focus-visible,
+.footer-phone:focus-visible,
+.footer-academy:focus-visible {
+  outline: none;
+}
+
+.social-link:active,
+.footer-phone:active,
+.footer-academy:active {
+  opacity: .3;
 }
 
 .footer-phone {
@@ -731,4 +869,26 @@ img {
   line-height: 40px;
   color: #000000;
   text-decoration: none;
+}
+
+.footer-phone:hover,
+.footer-phone:focus-visible,
+.footer-phone:active {
+  color: #756157;
+}
+
+.footer-academy {
+  display: block;
+  width: 115px;
+  height: 33px;
+}
+
+.footer-academy path {
+  fill: #000000;
+}
+
+.footer-academy:hover path,
+.footer-academy:focus-visible path,
+.footer-academy:active path {
+  fill: #756157;
 }
